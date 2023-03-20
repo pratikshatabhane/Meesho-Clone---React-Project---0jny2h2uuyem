@@ -1,4 +1,4 @@
-import { Home } from "@mui/icons-material";
+
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +14,8 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://media.fashionnetwork.com/cdn-cgi/image/fit=contain,width=1000,height=1000/m/0b8e/6422/560a/0f5c/680f/917b/371c/9c0e/907a/803e/803e.jpeg")
-      center;
+    url("https://static.startuptalky.com/2022/04/How-to-Market-Your-Product-on-Meesho-StartupTalky.jpg")
+      center ;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Signup = () => {
   let [value, setValue] = useState({
     name: "",
     email: "",
@@ -95,7 +95,7 @@ const Login = () => {
   let handleSubmit = (e) => {
 
     // e.preventDefault();
-    if (!value.email || !value.pass) {
+    if (!value.email || !value.pass || !value.name) {
       toast.error("Some fields are missing");
    
     } else {
@@ -104,12 +104,11 @@ const Login = () => {
       // setValue((prev)=> ({
       //   ...prev,
       //   logInn: true }));
-      // localStorage.setItem("user", JSON.stringify(value));
-  
-      navigate("/");
-      toast.success("Login Sucessful",{
-        position: toast.POSITION.TOP_RIGHT,}
-      )
+      // Step-1
+      localStorage.setItem("user", JSON.stringify(value));
+      toast.success("Account created")
+      navigate("/login");
+
       
     }
   };
@@ -121,16 +120,16 @@ const Login = () => {
       
       <Wrapper>
 
-        <Title>SIGN IN</Title>
+        <Title>SIGN UP</Title>
         <Form>
-          {/* <Input
+          <Input
             className="input"
             type="text"
             name="name"
             placeholder="Enter your username"
             value={value.name}
             onChange={handleInputChange}
-          /> */}
+          />
           <Input
             className="input"
             name="email"
@@ -151,11 +150,11 @@ const Login = () => {
           />
 
           {/* {err ? <div style={{color: 'red' , font_size: '15px'}}>{errtxt}</div> : null} */}
-          <Button onClick={handleSubmit}>LOGIN</Button>
+          <Button onClick={handleSubmit}>Signup</Button>
         </Form>
       </Wrapper>
     </Container>
   );
 };
 
-export default Login;
+export default Signup;
